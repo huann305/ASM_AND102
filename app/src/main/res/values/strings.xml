@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ASM_PH41609</string>
+    <string name="forget_password"><u>Quên mật khẩu?</u></string>
+    <string name="signup_login">Bạn chưa có tài khoản? <b>Đăng ký</b></string>
+    <string name="login_signup">Bạn đã có tài khoản? <b>Đăng nhập</b></string>
+    <string name="tv_edit"><u>Chỉnh sửa</u></string>
+    <string name="tv_delete"><u>Xóa</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
