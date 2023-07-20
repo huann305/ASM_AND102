@@ -1,7 +1,9 @@
 package com.example.asm_ph41609.adapter;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,12 +53,31 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                productDAO.DeleteProduct(holder.getAdapterPosition());
-                notifyDataSetChanged();
-                list.clear();
-                list = productDAO.GetAllListProduct();
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.setTitle("Thông báo");
+                alert.setMessage("Bạn có chắc chắn muốn xóa " + list.get(holder.getAdapterPosition()).getName() + "?");
+
+                alert.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        productDAO.DeleteProduct(holder.getAdapterPosition());
+                        notifyDataSetChanged();
+                        list.clear();
+                        list = productDAO.GetAllListProduct();
+                    }
+                });
+                alert.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert.show();
+
             }
         });
+
 
         holder.tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
