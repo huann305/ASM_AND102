@@ -17,8 +17,8 @@
             android:background="#F6F6F6">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:padding="8dp"
                 android:src="@drawable/ic_launcher_background"
                 android:id="@+id/iv_item"/>

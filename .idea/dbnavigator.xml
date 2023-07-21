@@ -25,6 +25,10 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="8ee7f14b-41ed-4cbf-8c9d-94227a98739f" />
+    <connection id="b51bef49-0162-4e38-b263-1c776f1162f9" />
+  </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>

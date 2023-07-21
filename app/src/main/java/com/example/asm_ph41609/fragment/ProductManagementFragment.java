@@ -3,8 +3,6 @@ package com.example.asm_ph41609.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.asm_ph41609.DAO.ProductDAO;
-import com.example.asm_ph41609.MainActivity;
 import com.example.asm_ph41609.R;
 import com.example.asm_ph41609.adapter.ProductAdapter;
 import com.example.asm_ph41609.model.Product;
@@ -27,11 +24,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class ProductManagementFragment extends Fragment {
     ProductDAO productDAO;
     RecyclerView recyclerView;
     List<Product> list;
-    Toolbar toolbar;
     ProductAdapter adapter;
     FloatingActionButton btnAdd;
     @Override
@@ -51,9 +47,6 @@ public class HomeFragment extends Fragment {
 
         GetData();
 
-        toolbar = view.findViewById(R.id.toolbar);
-        toolbar.setTitle("Sản Phẩm");
-        toolbar.setElevation(0);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,13 +74,11 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-
                 Window window = dialog.getWindow();
                 window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
                 dialog.show();
             }
         });
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         return view;
     }
 
