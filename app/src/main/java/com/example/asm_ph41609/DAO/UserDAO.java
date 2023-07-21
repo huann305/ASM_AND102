@@ -1,5 +1,6 @@
 package com.example.asm_ph41609.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -83,6 +84,8 @@ public class UserDAO {
 
         return check != -1;
     }
+
+
     public boolean DeleteUser(int id){
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         long check = database.delete("USERACCOUNT", "id=?", new String[]{String.valueOf(id)});

@@ -8,8 +8,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.example.asm_ph41609.fragment.ChangePasswordFragment;
 import com.example.asm_ph41609.fragment.ProductManagementFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -51,7 +56,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.kkkkk, new ProductManagementFragment()).commit();
             return true;
-        } else {
+        }else if(item.getItemId() == R.id.about){
+            Toast.makeText(this, "Đang cập nhật", Toast.LENGTH_SHORT).show();
+            return true;
+        }else if(item.getItemId() == R.id.setting){
+            Toast.makeText(this, "Đang cập nhật", Toast.LENGTH_SHORT).show();
+            return true;
+        }else if(item.getItemId() == R.id.change_password){
+            drawerLayout.close();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.kkkkk, new ChangePasswordFragment()).commit();
+            return true;
+        }
+        else if(item.getItemId() == R.id.logout){
+            Intent intent = new Intent(MainActivity.this, Login.class);
+            startActivity(intent);
+            return true;
+        }
+        else {
             return false;
         }
     }
