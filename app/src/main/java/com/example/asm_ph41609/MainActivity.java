@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.asm_ph41609.fragment.AboutFragment;
 import com.example.asm_ph41609.fragment.ChangePasswordFragment;
 import com.example.asm_ph41609.fragment.ProductManagementFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -57,7 +58,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager.beginTransaction().replace(R.id.kkkkk, new ProductManagementFragment()).commit();
             return true;
         }else if(item.getItemId() == R.id.about){
-            Toast.makeText(this, "Đang cập nhật", Toast.LENGTH_SHORT).show();
+            drawerLayout.close();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.kkkkk, new AboutFragment()).commit();
             return true;
         }else if(item.getItemId() == R.id.setting){
             Toast.makeText(this, "Đang cập nhật", Toast.LENGTH_SHORT).show();
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(item.getItemId() == R.id.logout){
             Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
+            finishAffinity();
             return true;
         }
         else {

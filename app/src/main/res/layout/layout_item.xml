@@ -13,26 +13,31 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F6F6F6">
+            android:layout_height="280dp"
+            android:padding="8dp"
+            android:background="#AEF6F6F6">
 
             <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_launcher_background"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/images"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="10dp"
                 android:id="@+id/iv_item"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/iv_item">
+                android:layout_below="@+id/iv_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bánh Quy Bơ LU Pháp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -45,14 +50,8 @@
                     android:text="45 000 VNĐ"
                     android:textSize="16sp"
                     android:id="@+id/tv_cost"
-                    android:layout_below="@+id/tv_name"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="  -  "
-                    android:textSize="20sp"
-                    android:id="@+id/kkk"
-                    android:layout_toEndOf="@+id/tv_cost"
+                    android:gravity="bottom"
+                    android:layout_above="@id/tv_quantity"
                     android:layout_below="@+id/tv_name"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -60,8 +59,7 @@
                     android:text="SL: 100"
                     android:textSize="16sp"
                     android:id="@+id/tv_quantity"
-                    android:layout_toEndOf="@+id/kkk"
-                    android:layout_below="@+id/tv_name"/>
+                    android:layout_above="@id/tv_edit"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -69,7 +67,7 @@
                     android:id="@+id/tv_edit"
                     android:text="@string/tv_edit"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@id/tv_cost"
+                    android:layout_alignParentBottom="true"
                     android:textColor="#03A9F4"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,7 +76,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="@string/tv_delete"
                     android:layout_marginTop="20dp"
-                    android:layout_below="@id/tv_cost"
+                    android:layout_alignParentBottom="true"
                     android:layout_toEndOf="@+id/tv_edit"
                     android:textColor="#F44336"/>
             </RelativeLayout>

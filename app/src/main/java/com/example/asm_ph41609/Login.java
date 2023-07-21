@@ -41,6 +41,14 @@ public class Login extends AppCompatActivity {
         userDAO = new UserDAO(this);
         list = userDAO.GetAllListUser();
 
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, FogotPass.class);
+                startActivity(intent);
+            }
+        });
+
         tvSignUpLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

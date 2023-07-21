@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "kk.db";
+    public static final String DB_NAME = "ASM.db";
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, 1);
@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.e("CHECK", "CHECK");
 
-        String CREATE_TBL_USER = "CREATE TABLE USERACCOUNT (username TEXT PRIMARY KEY, password TEXT, fullname TEXT)";
+        String CREATE_TBL_USER = "CREATE TABLE USERACCOUNT (id INTEGER  PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, fullname TEXT)";
         String CREATE_TBL_PRODUCT = "CREATE TABLE PRODUCT (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, cost INTEGER, quantity INTEGER)";
 
 
@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TBL_PRODUCT);
 
 
-        String INSERT_DATA_USER = "INSERT INTO USERACCOUNT VALUES ('user1', 'user1', 'user1')";
+        String INSERT_DATA_USER = "INSERT INTO USERACCOUNT VALUES (1, 'user1', 'user1', 'user1'), (2, 'user1', 'user1', 'user1')";
         String INSERT_DATA_PRODUCT = "INSERT INTO PRODUCT VALUES (1, 'Product 1', 100000, 10)," +
                 "(2, 'Product 2', 100000, 10)," +
                 "(3, 'Product 3', 100000, 10)," +

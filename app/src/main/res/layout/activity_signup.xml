@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:background="@drawable/hehe"
     android:gravity="center">
 
     <TextView
@@ -20,9 +21,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:id="@+id/tv_username"
             android:text="Tài khoản:"/>
         <EditText
+            android:paddingLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_username_signup"
@@ -38,11 +41,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_pass"
+            android:textColor="@color/black"
             android:text="Mật khẩu:"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_password_signup"
+            android:paddingLeft="10dp"
             android:height="45dp"
             android:background="@drawable/custom_input_login"
             android:layout_below="@+id/tv_pass"/>
@@ -55,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_confirm_pass"
+            android:textColor="@color/black"
             android:text="Nhập lại mật khẩu:"/>
         <EditText
             android:layout_width="match_parent"
@@ -62,6 +68,7 @@
             android:id="@+id/et_confirm_password_signup"
             android:height="45dp"
             android:layout_marginBottom="20dp"
+            android:paddingLeft="10dp"
             android:background="@drawable/custom_input_login"
             android:layout_below="@+id/tv_confirm_pass"/>
 
@@ -78,8 +85,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/tv_login"
+        android:textColor="@color/black"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="100dp"
         android:text="@string/login_signup"/>
 
 </LinearLayout>

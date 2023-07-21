@@ -35,6 +35,8 @@ public class SignUp extends AppCompatActivity {
         tvLogin = findViewById(R.id.tv_login);
 
         userDAO = new UserDAO(this);
+        
+        List<User> list = userDAO.GetAllListUser();
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,18 +45,26 @@ public class SignUp extends AppCompatActivity {
                 String pass = etPass.getText().toString();
                 String confirmPass = etConfirmPas.getText().toString();
                 
-                if(username.trim().equals("") || pass .trim().equals("")){
+                if(username.trim().equals("") || pass.trim().equals("") || confirmPass.trim().equals("")){
                     Toast.makeText(SignUp.this, "Không được để trống hoặc nhập khoảng trắng", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 
+                for(int i = 0; i < list.size(); i++){
+                    if (list.get(i).getUsername().equals(username)){
+                        Toast.makeText(SignUp.this, "Tài khoản đã tồn tại", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
                 if(!pass.equals(confirmPass)){
                     Toast.makeText(SignUp.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                
+
                 if(pass.equals(confirmPass)){
-                    userDAO.AddUser(new User(username, pass, "kkkk"));
+                    userDAO.AddUser(new User(0, username, pass, "kkkk"));
                     Toast.makeText(SignUp.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                     tvLogin.callOnClick();
                     finishAffinity();

@@ -3,7 +3,9 @@ package com.example.asm_ph41609.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,8 +44,11 @@ public class ProductManagementFragment extends Fragment {
         btnAdd = view.findViewById(R.id.btn_add);
 
         productDAO = new ProductDAO(getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(linearLayoutManager);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         GetData();
 
@@ -66,6 +71,10 @@ public class ProductManagementFragment extends Fragment {
                         String cost = etCost.getText().toString();
                         String quantity = etQuantity.getText().toString();
 
+                        if(!validate(name, cost, quantity)){
+                            return;
+                        }
+
                         productDAO.AddProduct(new Product(0, name, Integer.parseInt(cost), Integer.parseInt(quantity)));
                         adapter.notifyDataSetChanged();
                         GetData();
@@ -80,6 +89,26 @@ public class ProductManagementFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public boolean validate(String name, String cost, String quantity){
+
+        if(name.trim().equals("") || cost.trim().equals("") || quantity.trim().equals("")){
+            Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!cost.matches("[0-9]+")){
+            Toast.makeText(getContext(), "Giá là số nguyên dương", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!quantity.matches("[0-9]+")){
+            Toast.makeText(getContext(), "Số lượng không chính xác", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+
+        return true;
     }
 
     public void GetData(){

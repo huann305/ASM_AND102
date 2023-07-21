@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.renderscript.Sampler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.asm_ph41609.data.DBHelper;
@@ -36,13 +37,13 @@ public class UserDAO {
                 cursor.moveToFirst();
 
                 do {
-                    list.add(new User(cursor.getString(0),cursor.getString(1),cursor.getString(2)));
+                    list.add(new User(cursor.getInt(0), cursor.getString(1),cursor.getString(2),cursor.getString(3)));
                 }while (cursor.moveToNext());
                 database.setTransactionSuccessful();
             }
 
         }catch (Exception e){
-
+            e.printStackTrace();
         }finally {
             database.endTransaction();
         }

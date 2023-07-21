@@ -30,7 +30,7 @@
         </com.google.android.material.appbar.AppBarLayout>
         <FrameLayout
             android:id="@+id/kkkkk"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
     </LinearLayout>
@@ -38,6 +38,7 @@
         android:id="@+id/id_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:headerLayout="@layout/layout_top_nav"
         android:layout_gravity="start"
         app:menu="@menu/menu_nav">
 

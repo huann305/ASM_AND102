@@ -3,6 +3,7 @@ package com.example.asm_ph41609.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    int id;
     private String username;
     private String password;
     private String fullname;
@@ -31,11 +32,21 @@ public class User implements Serializable {
         this.fullname = fullname;
     }
 
-    public User(String username, String password, String fullname) {
+    public User(int id, String username, String password, String fullname) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.fullname = fullname;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public User() {
     }
 }

@@ -47,8 +47,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = list.get(position);
 
         holder.tvName.setText(product.getName());
-        holder.tvCost.setText(product.getCost() + " VNĐ");
-        holder.tvQuantity.setText("SL: " + product.getQuantity());
+        holder.tvCost.setText("Giá: " + product.getCost() + " VNĐ");
+        holder.tvQuantity.setText("Số lượng: " + product.getQuantity());
 
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +56,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
                 alert.setTitle("Thông báo");
-                alert.setMessage("Bạn có chắc chắn muốn xóa " + list.get(holder.getAdapterPosition()).getName() + "?");
+                alert.setMessage("Bạn có muốn xóa " + list.get(holder.getAdapterPosition()).getName() + "?");
 
                 alert.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
@@ -109,6 +109,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                         String cost = etCost.getText().toString();
                         String quantity = etQuantity.getText().toString();
 
+                        if(!validate(name, cost, quantity)){
+                            return;
+                        }
+
                         productDAO.UpdateProduct(new Product(0, name, Integer.parseInt(cost), Integer.parseInt(quantity)), list.get(holder.getAdapterPosition()).getId());
 
                         notifyDataSetChanged();
@@ -122,6 +126,26 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 dialog.show();
             }
         });
+    }
+
+    public boolean validate(String name, String cost, String quantity){
+
+        if(name.trim().equals("") || cost.trim().equals("") || quantity.trim().equals("")){
+            Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!cost.matches("[0-9]+")){
+            Toast.makeText(context, "Giá là số nguyên dương", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!quantity.matches("[0-9]+")){
+            Toast.makeText(context, "Số lượng không chính xác", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+
+        return true;
     }
 
     @Override

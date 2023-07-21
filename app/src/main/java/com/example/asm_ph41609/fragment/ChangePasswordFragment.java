@@ -58,10 +58,10 @@ public class ChangePasswordFragment extends Fragment {
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
                 String username = sharedPreferences.getString("USERNAME", "");
 
-//                if (oldPass.trim().equals("") || newPass.trim().equals("") || confirmNewPass.trim().equals("")) {
-//                    Toast.makeText(view.getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                if (oldPass.trim().equals("") || newPass.trim().equals("") || confirmNewPass.trim().equals("")) {
+                    Toast.makeText(view.getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 for (int i = 0; i < list.size(); i++) {
 
@@ -82,11 +82,11 @@ public class ChangePasswordFragment extends Fragment {
                             return;
                         }
 
-//                        userDAO.UpdateUser(new User(username, newPass, "kkk"), list.get(i).getUsername());
+                        userDAO.UpdateUser(new User(list.get(i).getId(), username, newPass, "kkk"), list.get(i).getId());
                         Toast.makeText(view.getContext(), "Cập nhật mật khẩu thành công", Toast.LENGTH_SHORT).show();
-//                        edMatKhauCu.setText("");
-//                        edMatKhauMoi.setText("");
-//                        edNhapLaiMatKhauMoi.setText("");
+                        etOldPass.setText("");
+                        etNewPass.setText("");
+                        etConfirmNewPass.setText("");
                     }
                 }
             }
