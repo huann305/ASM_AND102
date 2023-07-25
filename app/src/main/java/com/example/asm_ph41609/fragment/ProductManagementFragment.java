@@ -1,6 +1,9 @@
 package com.example.asm_ph41609.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.PopupMenu;
@@ -43,6 +46,8 @@ public class ProductManagementFragment extends Fragment {
         recyclerView = view.findViewById(R.id.rv_main);
         btnAdd = view.findViewById(R.id.btn_add);
 
+        recyclerView.setHasFixedSize(true);
+
         productDAO = new ProductDAO(getContext());
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 //        recyclerView.setLayoutManager(linearLayoutManager);
@@ -51,7 +56,6 @@ public class ProductManagementFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         GetData();
-
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

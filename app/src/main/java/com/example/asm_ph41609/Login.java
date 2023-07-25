@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class Login extends AppCompatActivity {
     Button btnLogin;
     TextView tvForgotPassword;
     TextView tvSignUpLogin;
+    CheckBox cbRemember;
     public static String USER_FILE = "USER_FILE";
 
     @Override
@@ -32,14 +34,17 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUsername = findViewById(R.id.et_username_signup);
-        etPassword = findViewById(R.id.et_password_signup);
-        btnLogin = findViewById(R.id.btn_signup);
+        etUsername = findViewById(R.id.et_username_login);
+        etPassword = findViewById(R.id.et_password_login);
+        btnLogin = findViewById(R.id.btn_login);
         tvForgotPassword = findViewById(R.id.tv_forgot_pass);
         tvSignUpLogin = findViewById(R.id.tv_signup);
+        cbRemember = findViewById(R.id.cb_remember_pass);
 
         userDAO = new UserDAO(this);
         list = userDAO.GetAllListUser();
+
+        checkRemember();
 
         tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +77,7 @@ public class Login extends AppCompatActivity {
                         }
                         check = true;
                         Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        remember(username, password, cbRemember.isChecked());
                         rememberUser(username, password);
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
@@ -84,6 +90,31 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    public void remember(String user, String pass, boolean chkRemember) {
+        SharedPreferences sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("user", user);
+        editor.putString("pass", pass);
+        editor.putBoolean("chkRemember", chkRemember);
+
+        editor.apply();
+    }
+
+    public void checkRemember() {
+        SharedPreferences sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
+        String user = sharedPreferences.getString("user", "");
+        String pass = sharedPreferences.getString("pass", "");
+        boolean chkRemember = sharedPreferences.getBoolean("chkRemember", false);
+
+        this.cbRemember.setChecked(chkRemember);
+        if (this.cbRemember.isChecked()) {
+            etUsername.setText(user);
+            etPassword.setText(pass);
+        }
     }
 
 

@@ -2,6 +2,7 @@ package com.example.asm_ph41609.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.asm_ph41609.DAO.UserDAO;
+import com.example.asm_ph41609.Login;
 import com.example.asm_ph41609.R;
 import com.example.asm_ph41609.model.User;
 import com.google.android.material.textfield.TextInputEditText;
@@ -83,10 +85,10 @@ public class ChangePasswordFragment extends Fragment {
                         }
 
                         userDAO.UpdateUser(new User(list.get(i).getId(), username, newPass, "kkk"), list.get(i).getId());
-                        Toast.makeText(view.getContext(), "Cập nhật mật khẩu thành công", Toast.LENGTH_SHORT).show();
-                        etOldPass.setText("");
-                        etNewPass.setText("");
-                        etConfirmNewPass.setText("");
+                        Toast.makeText(view.getContext(), "Cập nhật mật khẩu thành công, đăng nhập lại để tiếp tục", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(ChangePasswordFragment.this.getContext(), Login.class);
+                        startActivity(intent);
                     }
                 }
             }

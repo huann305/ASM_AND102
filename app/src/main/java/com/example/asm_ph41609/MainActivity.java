@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -35,15 +37,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar.setElevation(0);
 //
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, toolbar, 0, 0);
-        actionBarDrawerToggle.syncState();
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(
+                MainActivity.this,
+                drawerLayout,
+                toolbar,
+                R.string.open,
+                R.string.close
+        );
+
+        drawerToggle.getDrawerArrowDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+
+        drawerToggle.setDrawerIndicatorEnabled(true);
+        drawerToggle.syncState();
+        drawerLayout.addDrawerListener(drawerToggle);
+
 //
         navigationView = findViewById(R.id.id_nav);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         fragmentManager.beginTransaction().replace(R.id.kkkkk, new ProductManagementFragment()).commit();
 //        replaceFragment(new ProductManagementFragment());
         setTitle("Quản lý sản phẩm");
