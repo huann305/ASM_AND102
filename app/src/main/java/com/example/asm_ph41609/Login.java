@@ -77,8 +77,7 @@ public class Login extends AppCompatActivity {
                         }
                         check = true;
                         Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        remember(username, password, cbRemember.isChecked());
-                        rememberUser(username, password);
+                        remember(username, password, cbRemember.isChecked(), true);
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -93,10 +92,11 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void remember(String user, String pass, boolean chkRemember) {
+    public void remember(String user, String pass, boolean chkRemember, boolean isLogin) {
         SharedPreferences sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        editor.putBoolean("isLogin", isLogin);
         editor.putString("user", user);
         editor.putString("pass", pass);
         editor.putBoolean("chkRemember", chkRemember);
@@ -109,20 +109,25 @@ public class Login extends AppCompatActivity {
         String user = sharedPreferences.getString("user", "");
         String pass = sharedPreferences.getString("pass", "");
         boolean chkRemember = sharedPreferences.getBoolean("chkRemember", false);
+        boolean isLogin = sharedPreferences.getBoolean("isLogin", false);
 
         this.cbRemember.setChecked(chkRemember);
         if (this.cbRemember.isChecked()) {
             etUsername.setText(user);
             etPassword.setText(pass);
         }
+        if(isLogin){
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
 
-    public void rememberUser(String u, String p ) {
-        SharedPreferences pref = getSharedPreferences(USER_FILE, MODE_PRIVATE);
-        SharedPreferences.Editor edit = pref.edit();
-        edit.putString("USERNAME", u);
-        edit.putString("PASSWORD", p);
-        edit.commit();
-    }
+//    public void rememberUser(String u, String p ) {
+//        SharedPreferences pref = getSharedPreferences(USER_FILE, MODE_PRIVATE);
+//        SharedPreferences.Editor edit = pref.edit();
+//        edit.putString("USERNAME", u);
+//        edit.putString("PASSWORD", p);
+//        edit.commit();
+//    }
 }

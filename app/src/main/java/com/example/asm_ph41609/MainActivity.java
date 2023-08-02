@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if(item.getItemId() == R.id.logout){
             Intent intent = new Intent(MainActivity.this, Login.class);
+            logout(false);
             startActivity(intent);
             finishAffinity();
             return true;
@@ -92,5 +94,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else {
             return false;
         }
+    }
+    public void logout(boolean isLogin) {
+        SharedPreferences sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean("isLogin", isLogin);
+
+        editor.apply();
     }
 }

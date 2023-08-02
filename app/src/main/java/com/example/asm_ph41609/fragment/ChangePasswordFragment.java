@@ -87,12 +87,24 @@ public class ChangePasswordFragment extends Fragment {
                         userDAO.UpdateUser(new User(list.get(i).getId(), username, newPass, "kkk"), list.get(i).getId());
                         Toast.makeText(view.getContext(), "Cập nhật mật khẩu thành công, đăng nhập lại để tiếp tục", Toast.LENGTH_SHORT).show();
 
+                        logout(false);
+
                         Intent intent = new Intent(ChangePasswordFragment.this.getContext(), Login.class);
                         startActivity(intent);
+                        getActivity().finishAffinity();
                     }
                 }
             }
         });
 
+    }
+
+    public void logout(boolean isLogin) {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("remember", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean("isLogin", isLogin);
+
+        editor.apply();
     }
 }
